@@ -4,12 +4,9 @@ set config=Release
 set platform=AnyCpu
 set outputdir=%cwd%\bin
 set cwd=%CD%
-set commonflags=/p:Configuration=%config%;Platform=%platform% /p:DebugSymbols=false /p:DebugType=None
+set commonflags=/p:Configuration=%config% /p:Platform=%platform% /p:DebugSymbols=false /p:DebugType=None
 
-if not exist %fdir% (
-    set fdir=%WINDIR%\Microsoft.NET\Framework
-)
-
+set fdir=%WINDIR%\Microsoft.NET\Framework
 set msbuild=%fdir%\v4.0.30319\msbuild.exe
 
 :build
