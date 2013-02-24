@@ -42,7 +42,7 @@ namespace Fleck.Tests
             SetupReadLengths(0);
             _connection.StartReceiving();
             _connection.Send("Zing");
-            _socketMock.Verify(x => x.Send(It.IsAny<byte[]>(), It.IsAny<FleckExtensions.Action>(), It.IsAny<FleckExtensions.Action<Exception>>()), Times.Never());
+            _socketMock.Verify(x => x.Send(It.IsAny<byte[]>(), It.IsAny<Fleck2Extensions.Action>(), It.IsAny<Fleck2Extensions.Action<Exception>>()), Times.Never());
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace Fleck.Tests
             _connection.Handler = _handlerMock.Object;
             _socketMock.SetupGet(x => x.Connected).Returns(false);
             _connection.Send("Zing");
-            _socketMock.Verify(x => x.Send(It.IsAny<byte[]>(), It.IsAny<FleckExtensions.Action>(), It.IsAny<FleckExtensions.Action<Exception>>()), Times.Never());
+            _socketMock.Verify(x => x.Send(It.IsAny<byte[]>(), It.IsAny<Fleck2Extensions.Action>(), It.IsAny<Fleck2Extensions.Action<Exception>>()), Times.Never());
         }
 
         [Test]
@@ -59,7 +59,7 @@ namespace Fleck.Tests
         {
             _socketMock.SetupGet(x => x.Connected).Returns(false);
             _connection.StartReceiving();
-            _socketMock.Verify(x => x.Receive(It.IsAny<byte[]>(), It.IsAny<FleckExtensions.Action<int>>(), It.IsAny<FleckExtensions.Action<Exception>>(), 0), Times.Never());
+            _socketMock.Verify(x => x.Receive(It.IsAny<byte[]>(), It.IsAny<Fleck2Extensions.Action<int>>(), It.IsAny<Fleck2Extensions.Action<Exception>>(), 0), Times.Never());
         }
 
         [Test]
@@ -115,8 +115,8 @@ namespace Fleck.Tests
         {
             _socketMock.Setup(
                 x =>
-                x.Receive(It.IsAny<byte[]>(), It.IsAny<FleckExtensions.Action<int>>(), It.IsAny<FleckExtensions.Action<Exception>>(), It.IsAny<int>()))
-                .Callback<byte[], FleckExtensions.Action<int>, FleckExtensions.Action<Exception>, int>((buffer, success, error, offset) => error(new Exception()));
+                x.Receive(It.IsAny<byte[]>(), It.IsAny<Fleck2Extensions.Action<int>>(), It.IsAny<Fleck2Extensions.Action<Exception>>(), It.IsAny<int>()))
+                .Callback<byte[], Fleck2Extensions.Action<int>, Fleck2Extensions.Action<Exception>, int>((buffer, success, error, offset) => error(new Exception()));
 
             _socketMock.SetupGet(x => x.Connected).Returns(true);
 
@@ -132,8 +132,8 @@ namespace Fleck.Tests
         {
             _socketMock.Setup(
                 x =>
-                x.Receive(It.IsAny<byte[]>(), It.IsAny<FleckExtensions.Action<int>>(), It.IsAny<FleckExtensions.Action<Exception>>(), It.IsAny<int>()))
-                .Callback<byte[], FleckExtensions.Action<int>, FleckExtensions.Action<Exception>, int>((buffer, success, error, offset) => error(new ObjectDisposedException("socket")));
+                x.Receive(It.IsAny<byte[]>(), It.IsAny<Fleck2Extensions.Action<int>>(), It.IsAny<Fleck2Extensions.Action<Exception>>(), It.IsAny<int>()))
+                .Callback<byte[], Fleck2Extensions.Action<int>, Fleck2Extensions.Action<Exception>, int>((buffer, success, error, offset) => error(new ObjectDisposedException("socket")));
 
             _socketMock.SetupGet(x => x.Connected).Returns(true);
 
@@ -149,8 +149,8 @@ namespace Fleck.Tests
             var index = 0;
             _socketMock.Setup(
                 x =>
-                x.Receive(It.IsAny<byte[]>(), It.IsAny<FleckExtensions.Action<int>>(), It.IsAny<FleckExtensions.Action<Exception>>(), It.IsAny<int>()))
-                .Callback<byte[], FleckExtensions.Action<int>, FleckExtensions.Action<Exception>, int>((buffer, success, error, offset) =>
+                x.Receive(It.IsAny<byte[]>(), It.IsAny<Fleck2Extensions.Action<int>>(), It.IsAny<Fleck2Extensions.Action<Exception>>(), It.IsAny<int>()))
+                .Callback<byte[], Fleck2Extensions.Action<int>, Fleck2Extensions.Action<Exception>, int>((buffer, success, error, offset) =>
                 {
                     if (args.Length > index)
                         success(args[index++]);

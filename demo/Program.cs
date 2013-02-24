@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Fleck;
-using Fleck.Interfaces;
+using Fleck2.Interfaces;
 
 namespace Fleck2.Demo
 {

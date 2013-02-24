@@ -43,12 +43,12 @@ namespace Fleck2
                 _stream = new NetworkStream(_socket);
         }
 
-        public void Authenticate(X509Certificate2 certificate, FleckExtensions.Action callback, FleckExtensions.Action<Exception> error)
+        public void Authenticate(X509Certificate2 certificate, Fleck2Extensions.Action callback, Fleck2Extensions.Action<Exception> error)
         {
             var ssl = new SslStream(_stream, false);
             _stream = ssl;
 
-            FleckExtensions.Func<AsyncCallback, object, IAsyncResult> begin =
+            Fleck2Extensions.Func<AsyncCallback, object, IAsyncResult> begin =
                 (cb, s) => ssl.BeginAuthenticateAsServer(certificate, false, SslProtocols.Tls, false, cb, s);
 
             _socketFactory.HandleAsyncVoid(begin, ssl.EndAuthenticateAsServer, result =>
@@ -85,10 +85,10 @@ namespace Fleck2
             set { _socket.NoDelay = value; }
         }
 
-        public void Receive(byte[] buffer, FleckExtensions.Action<int> callback, FleckExtensions.Action<Exception> error, int offset = 0)
+        public void Receive(byte[] buffer, Fleck2Extensions.Action<int> callback, Fleck2Extensions.Action<Exception> error, int offset = 0)
         {
       
-            FleckExtensions.Func<AsyncCallback, object, IAsyncResult> begin = (cb, data) =>
+            Fleck2Extensions.Func<AsyncCallback, object, IAsyncResult> begin = (cb, data) =>
             _stream.BeginRead(buffer, offset, buffer.Length, cb, data);
 
             _socketFactory.HandleAsync(begin, _stream.EndRead, result =>
@@ -99,10 +99,10 @@ namespace Fleck2
 
         }
 
-        public void Accept(FleckExtensions.Action<ISocket> callback, FleckExtensions.Action<Exception> error)
+        public void Accept(Fleck2Extensions.Action<ISocket> callback, Fleck2Extensions.Action<Exception> error)
         {
 
-            FleckExtensions.Func<IAsyncResult, ICancellationToken, ISocket> end = (result, token) =>
+            Fleck2Extensions.Func<IAsyncResult, ICancellationToken, ISocket> end = (result, token) =>
             {
                 token.ThrowIfCancellationRequested();
                 return new SocketWrapper(_socket.EndAccept(result));
@@ -135,10 +135,10 @@ namespace Fleck2
             return 0;
         }
 
-        public void Send(byte[] buffer, FleckExtensions.Action callback, FleckExtensions.Action<Exception> error)
+        public void Send(byte[] buffer, Fleck2Extensions.Action callback, Fleck2Extensions.Action<Exception> error)
         {
 
-            FleckExtensions.Func<AsyncCallback, object, IAsyncResult> begin =
+            Fleck2Extensions.Func<AsyncCallback, object, IAsyncResult> begin =
                             (cb, s) => _stream.BeginWrite(buffer, 0, buffer.Length, cb, s);
 
             _socketFactory.HandleAsyncVoid(begin, _stream.EndWrite, result =>

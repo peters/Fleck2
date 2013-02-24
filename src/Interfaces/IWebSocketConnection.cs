@@ -4,8 +4,8 @@ namespace Fleck2.Interfaces
 {
     public interface IWebSocketConnection
     {
-        FleckExtensions.Action OnOpen { get; set; }
-        FleckExtensions.Action OnClose { get; set; }
+        Fleck2Extensions.Action OnOpen { get; set; }
+        Fleck2Extensions.Action OnClose { get; set; }
         Action<string> OnMessage { get; set; }
         Action<byte[]> OnBinary { get; set; }
         Action<Exception> OnError { get; set; }

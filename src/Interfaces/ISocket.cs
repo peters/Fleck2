@@ -15,10 +15,10 @@ namespace Fleck2.Interfaces
         Stream Stream { get; }
         bool NoDelay { get; set; }
 
-        void Accept(FleckExtensions.Action<ISocket> callback, FleckExtensions.Action<Exception> error);
-        void Send(byte[] buffer, FleckExtensions.Action callback, FleckExtensions.Action<Exception> error);
-        void Receive(byte[] buffer, FleckExtensions.Action<int> callback, FleckExtensions.Action<Exception> error, int offset = 0);
-        void Authenticate(X509Certificate2 certificate, FleckExtensions.Action callback, FleckExtensions.Action<Exception> error);
+        void Accept(Fleck2Extensions.Action<ISocket> callback, Fleck2Extensions.Action<Exception> error);
+        void Send(byte[] buffer, Fleck2Extensions.Action callback, Fleck2Extensions.Action<Exception> error);
+        void Receive(byte[] buffer, Fleck2Extensions.Action<int> callback, Fleck2Extensions.Action<Exception> error, int offset = 0);
+        void Authenticate(X509Certificate2 certificate, Fleck2Extensions.Action callback, Fleck2Extensions.Action<Exception> error);
 
         void Dispose();
         void Close();

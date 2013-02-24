@@ -1,19 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Fleck2
+
+namespace System.Runtime.CompilerServices
 {
     [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Method,
         Inherited = false, AllowMultiple = false)]
     public class ExtensionAttribute : Attribute
     {
     }
+}
+
+
+namespace Fleck2
+{
 
     /// <summary>
     /// Since Fleck is targeting NET40 we need to add workarounds for
     /// getting this awesome library running on older CLR's. 
     /// </summary>
-    public static class FleckExtensions
+    public static class Fleck2Extensions
     {
 
         #region Action, Func

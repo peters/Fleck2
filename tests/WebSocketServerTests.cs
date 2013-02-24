@@ -30,7 +30,7 @@ namespace Fleck.Tests
             _server.Start(connection => { });
 
             socketMock.Verify(s => s.Bind(It.Is<IPEndPoint>(i => i.Port == 8000)));
-            socketMock.Verify(s => s.Accept(It.IsAny<FleckExtensions.Action<ISocket>>(), It.IsAny<FleckExtensions.Action<Exception>>()));
+            socketMock.Verify(s => s.Accept(It.IsAny<Fleck2Extensions.Action<ISocket>>(), It.IsAny<Fleck2Extensions.Action<Exception>>()));
         }
 
         [Test]

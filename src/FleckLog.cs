@@ -15,7 +15,7 @@ namespace Fleck2
     {
         public static LogLevel Level = LogLevel.Info;
 
-        public static FleckExtensions.Action<LogLevel, string, Exception> LogAction = (level, message, ex) =>
+        public static Fleck2Extensions.Action<LogLevel, string, Exception> LogAction = (level, message, ex) =>
         {
             if (Level == LogLevel.None) return;
             if (level >= Level)

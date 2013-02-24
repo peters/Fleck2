@@ -15,7 +15,7 @@ namespace Fleck.Tests
         private WebSocketHttpRequest _request;
         private Action<string> _onMessage;
         private Action<byte[]> _onBinary;
-        private FleckExtensions.Action _onClose;
+        private Fleck2Extensions.Action _onClose;
 
         [SetUp]
         public void Setup()
@@ -203,7 +203,7 @@ namespace Fleck.Tests
         [Test]
         public void ShouldCloseOnCloseFromText()
         {
-            var payload = FleckExtensions.ToArray(1000.ToBigEndianBytes<ushort>().Concat(Encoding.UTF8.GetBytes("Reason")));
+            var payload = Fleck2Extensions.ToArray(1000.ToBigEndianBytes<ushort>().Concat(Encoding.UTF8.GetBytes("Reason")));
             var frame = new Hybi14DataFrame
                 {
                     FrameType = FrameType.Close,

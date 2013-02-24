@@ -31,7 +31,7 @@ namespace Fleck2
         /// <typeparam name="TResult"></typeparam>
         /// <param name="callback"></param>
         /// <returns></returns>
-        public SocketResult Success<TResult>(FleckExtensions.Action<TResult> callback)
+        public SocketResult Success<TResult>(Fleck2Extensions.Action<TResult> callback)
         {
             if(!(_result is Exception))
             {
@@ -44,7 +44,7 @@ namespace Fleck2
         /// </summary>
         /// <param name="callback"></param>
         /// <returns></returns>
-        public SocketResult Error<TResult>(FleckExtensions.Action<TResult> callback)
+        public SocketResult Error<TResult>(Fleck2Extensions.Action<TResult> callback)
         {
             if (_result is Exception)
             {
@@ -57,7 +57,7 @@ namespace Fleck2
         /// </summary>
         /// <param name="callback"></param>
         /// <returns></returns>
-        public SocketResult Success(FleckExtensions.Action callback)
+        public SocketResult Success(Fleck2Extensions.Action callback)
         {
             if(!(_result is Exception))
             {

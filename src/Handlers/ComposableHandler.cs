@@ -6,11 +6,11 @@ namespace Fleck2.Handlers
 {
     public class ComposableHandler : IHandler
     {
-        public FleckExtensions.Func<byte[]> Handshake = () => new byte[0];
-        public FleckExtensions.Func<string, byte[]> TextFrame = x => new byte[0];
-        public FleckExtensions.Func<byte[], byte[]> BinaryFrame = x => new byte[0];
+        public Fleck2Extensions.Func<byte[]> Handshake = () => new byte[0];
+        public Fleck2Extensions.Func<string, byte[]> TextFrame = x => new byte[0];
+        public Fleck2Extensions.Func<byte[], byte[]> BinaryFrame = x => new byte[0];
         public Action<List<byte>> ReceiveData = delegate { };
-        public FleckExtensions.Func<int, byte[]> CloseFrame = i => new byte[0];
+        public Fleck2Extensions.Func<int, byte[]> CloseFrame = i => new byte[0];
         
         private readonly List<byte> _data = new List<byte>();
 
