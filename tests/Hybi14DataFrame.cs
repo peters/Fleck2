@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System;
 using System.Collections.Generic;
+using Fleck2;
 
 namespace Fleck.Tests
 {

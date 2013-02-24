@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Fleck.Interfaces
+namespace Fleck2.Interfaces
 {
     public interface IHandler
     {

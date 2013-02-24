@@ -1,7 +1,7 @@
 using System;
-using Fleck.Interfaces;
+using Fleck2.Interfaces;
 
-namespace Fleck
+namespace Fleck2
 {
     public class SocketCancellationToken : ICancellationToken
     {

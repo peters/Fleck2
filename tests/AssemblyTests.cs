@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Fleck2;
 using NUnit.Framework;
 
 namespace Fleck.Tests

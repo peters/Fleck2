@@ -1,7 +1,8 @@
 using System;
-using Fleck.Handlers;
 using System.Text;
-using Fleck.Interfaces;
+using Fleck2;
+using Fleck2.Handlers;
+using Fleck2.Interfaces;
 using NUnit.Framework;
 
 namespace Fleck.Tests

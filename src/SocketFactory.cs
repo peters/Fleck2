@@ -1,9 +1,8 @@
 using System;
-using System.Diagnostics;
 using System.Threading;
-using Fleck.Interfaces;
+using Fleck2.Interfaces;
 
-namespace Fleck
+namespace Fleck2
 {
     public class SocketFactory
     {

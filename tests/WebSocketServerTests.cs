@@ -1,6 +1,7 @@
 using System;
 using System.Net;
-using Fleck.Interfaces;
+using Fleck2;
+using Fleck2.Interfaces;
 using Moq;
 using NUnit.Framework;
 using System.Security.Cryptography.X509Certificates;

@@ -5,7 +5,7 @@ using System.Net;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 
-namespace Fleck.Interfaces
+namespace Fleck2.Interfaces
 {
     public interface ISocket
     {

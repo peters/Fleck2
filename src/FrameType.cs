@@ -1,4 +1,4 @@
-namespace Fleck
+namespace Fleck2
 {
     public enum FrameType : byte
     {

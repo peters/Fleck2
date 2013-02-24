@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Fleck.Interfaces;
+using Fleck2.Interfaces;
 
-namespace Fleck
+namespace Fleck2
 {
     public class WebSocketConnection : IWebSocketConnection
     {

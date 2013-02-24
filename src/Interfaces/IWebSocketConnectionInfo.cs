@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System;
 
-namespace Fleck.Interfaces
+namespace Fleck2.Interfaces
 {
     public interface IWebSocketConnectionInfo
     {

@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Fleck.Interfaces;
+using Fleck2.Interfaces;
 
-namespace Fleck.Handlers
+namespace Fleck2.Handlers
 {
     public class ComposableHandler : IHandler
     {

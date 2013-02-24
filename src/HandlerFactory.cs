@@ -1,8 +1,8 @@
 using System;
-using Fleck.Handlers;
-using Fleck.Interfaces;
+using Fleck2.Handlers;
+using Fleck2.Interfaces;
 
-namespace Fleck
+namespace Fleck2
 {
     public class HandlerFactory
     {

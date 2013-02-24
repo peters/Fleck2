@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System;
-using Fleck.Interfaces;
+using Fleck2.Interfaces;
 
-namespace Fleck
+namespace Fleck2
 {
     public class WebSocketConnectionInfo : IWebSocketConnectionInfo
     {

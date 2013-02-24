@@ -1,5 +1,6 @@
 using System;
-namespace Fleck
+
+namespace Fleck2
 {
     public class WebSocketException : Exception
     {

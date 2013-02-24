@@ -1,7 +1,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Fleck
+namespace Fleck2
 {
     public class RequestParser
     {

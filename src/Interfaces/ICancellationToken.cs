@@ -1,4 +1,4 @@
-﻿namespace Fleck.Interfaces
+﻿namespace Fleck2.Interfaces
 {
     public interface ICancellationToken
     {

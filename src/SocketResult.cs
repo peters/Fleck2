@@ -1,6 +1,6 @@
 using System;
 
-namespace Fleck
+namespace Fleck2
 {
     public class SocketResult
     {

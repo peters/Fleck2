@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace System.Runtime.CompilerServices
+namespace Fleck2
 {
     [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Method,
         Inherited = false, AllowMultiple = false)]
     public class ExtensionAttribute : Attribute
     {
     }
-}
 
-namespace Fleck
-{
-  
     /// <summary>
     /// Since Fleck is targeting NET40 we need to add workarounds for
     /// getting this awesome library running on older CLR's. 
@@ -173,7 +169,7 @@ namespace Fleck
         /// <param name="selector"></param>
         /// <returns></returns>
         public static IEnumerable<TResult> Select<TSource, TResult>(this IEnumerable<TSource> enumerable, 
-            Converter<TSource, TResult> selector)
+                                                                    Converter<TSource, TResult> selector)
         {
             foreach (var newValue in ToList(enumerable).ConvertAll(selector))
             {

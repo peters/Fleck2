@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using Fleck.Handlers;
-using Fleck.Interfaces;
+using Fleck2;
+using Fleck2.Handlers;
+using Fleck2.Interfaces;
 using NUnit.Framework;
 
 namespace Fleck.Tests
@@ -202,7 +203,7 @@ namespace Fleck.Tests
         [Test]
         public void ShouldCloseOnCloseFromText()
         {
-            var payload = 1000.ToBigEndianBytes<ushort>().Concat(Encoding.UTF8.GetBytes("Reason")).ToArray();
+            var payload = FleckExtensions.ToArray(1000.ToBigEndianBytes<ushort>().Concat(Encoding.UTF8.GetBytes("Reason")));
             var frame = new Hybi14DataFrame
                 {
                     FrameType = FrameType.Close,

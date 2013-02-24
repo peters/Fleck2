@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
-using Fleck.Interfaces;
+using Fleck2.Interfaces;
 
-namespace Fleck.Handlers
+namespace Fleck2.Handlers
 {
     public static class Draft76Handler
     {

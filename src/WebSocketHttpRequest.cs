@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Fleck
+namespace Fleck2
 {
     public class WebSocketHttpRequest
     {
