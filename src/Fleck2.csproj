@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">RUNNING_ON_4</DefineConstants>
+    <DefineConstants>NOT_RUNNING_ON_4</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{213AD961-51EF-40DD-96BF-9EF6690A327C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fleck</RootNamespace>
+    <AssemblyName>Fleck</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SocketCancellationTokenException.cs" />
+    <Compile Include="FleckExtensions.cs" />
+    <Compile Include="FleckLog.cs" />
+    <Compile Include="Interfaces\ICancellationToken.cs" />
+    <Compile Include="SocketCancellationToken.cs" />
+    <Compile Include="SocketFactory.cs" />
+    <Compile Include="FrameType.cs" />
+    <Compile Include="HandlerFactory.cs" />
+    <Compile Include="Handlers\ComposableHandler.cs" />
+    <Compile Include="Handlers\Draft76Handler.cs" />
+    <Compile Include="Handlers\Hybi13Handler.cs" />
+    <Compile Include="HandshakeException.cs" />
+    <Compile Include="Interfaces\IHandler.cs" />
+    <Compile Include="Interfaces\ISocket.cs" />
+    <Compile Include="Interfaces\IWebSocketConnection.cs" />
+    <Compile Include="Interfaces\IWebSocketConnectionInfo.cs" />
+    <Compile Include="Interfaces\IWebSocketServer.cs" />
+    <Compile Include="IntExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadState.cs" />
+    <Compile Include="RequestParser.cs" />
+    <Compile Include="SocketResult.cs" />
+    <Compile Include="SocketWrapper.cs" />
+    <Compile Include="WebSocketConnection.cs" />
+    <Compile Include="WebSocketConnectionInfo.cs" />
+    <Compile Include="WebSocketException.cs" />
+    <Compile Include="WebSocketHttpRequest.cs" />
+    <Compile Include="WebSocketServer.cs" />
+    <Compile Include="WebSocketStatusCodes.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
