@@ -184,53 +184,5 @@ namespace Fleck2
         }
         #endregion
 
-#if !NET40_OR_GREATER
-
-        #region Task
-        /*
-        public delegate TR Task<out TR>();
-        public delegate void Task();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="TR"></typeparam>
-        /// <param name="innerFunction"></param>
-        /// <returns></returns>
-        public static Task<TR> BeginTask<TR>(Task<TR> innerFunction)
-        {
-
-            var returnedValue = default(TR);
-            var completed = false;
-            var sync = new object();
-
-            innerFunction.BeginInvoke(
-                delegate(IAsyncResult iAsyncResult)
-                    {
-                        lock (sync)
-                        {
-                            completed = true;
-                            returnedValue = innerFunction.EndInvoke(iAsyncResult);
-                            Monitor.Pulse(sync);
-                        }
-                    }, null);
-
-            return delegate
-                {
-                    lock (sync)
-                    {
-                        if (!completed)
-                        {
-                            Monitor.Wait(sync);
-                        }
-                        return returnedValue;
-                    }
-                };
-
-        }
-        */
-        #endregion
-#endif
-
     }
 }
