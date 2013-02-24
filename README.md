@@ -63,6 +63,7 @@ License
 The MIT License
 
 Copyright (c) 2013 Peter Sunde
+
 Copyright (c) 2010-2012 Jason Staten
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
