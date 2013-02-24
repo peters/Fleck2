@@ -10,6 +10,11 @@ Install via NuGet
 ----------
     Install-Package Fleck2
 
+Building
+--------
+Run build.bat from the commandline and release dll will be
+created for NET 2.0, 3.5, 4.0 and 4.5.
+
 Requirements
 ------------
 NET Framework 2.0 or newer.
