@@ -1,4 +1,4 @@
-Fleck
+Fleck2
 =====
 
 Fleck is a WebSocket server implementation in C# with NET 2.0 support.
