@@ -4,7 +4,7 @@ Fleck2
 Fleck is a WebSocket server implementation in C# with NET 2.0 support.
 
 This project is a fork of [Fleck](git://github.com/statianzo/Fleck.git) branched from the
-[Nugget][nugget] project, Fleck requires no inheritance, container, or additional references.
+[Nugget][nugget] project. Fleck requires no inheritance, container, or additional references.
 
 Install via NuGet
 ----------
