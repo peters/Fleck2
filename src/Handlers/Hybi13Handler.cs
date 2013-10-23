@@ -31,7 +31,7 @@ namespace Fleck2.Handlers
             
             if (payload.Length > UInt16.MaxValue) {
                 memoryStream.WriteByte(127);
-                var lengthBytes = payload.Length.ToBigEndianBytes<ushort>();
+                var lengthBytes = payload.Length.ToBigEndianBytes<ulong>();
                 memoryStream.Write(lengthBytes, 0, lengthBytes.Length);
             } else if (payload.Length > 125) {
                 memoryStream.WriteByte(126);
