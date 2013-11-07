@@ -85,13 +85,18 @@ namespace Fleck2
             set { _socket.NoDelay = value; }
         }
 
-        public void Receive(byte[] buffer, Fleck2Extensions.Action<int> callback, Fleck2Extensions.Action<Exception> error, int offset = 0)
+        public void Receive(byte[] buffer, Fleck2Extensions.Action<int> callback, Fleck2Extensions.Action<Exception> error, int offset)
         {
-      
+       
             Fleck2Extensions.Func<AsyncCallback, object, IAsyncResult> begin = (cb, data) =>
             _stream.BeginRead(buffer, offset, buffer.Length, cb, data);
 
-            _socketFactory.HandleAsync(begin, _stream.EndRead, result =>
+            Fleck2Extensions.Func<IAsyncResult, int> end = (result) =>
+            {
+                return _stream.EndRead(result);
+            };
+
+            _socketFactory.HandleAsync(begin, end, result =>
             {
                 result.Success(callback);
                 result.Error(error);

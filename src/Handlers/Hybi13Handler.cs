@@ -148,7 +148,7 @@ namespace Fleck2.Handlers
                 onMessage(ReadUtf8PayloadData(data));
                 break;
             default:
-                FleckLog.Debug("Received unhandled " + frameType);
+                FleckLog.Debug("Received unhandled " + frameType,null);
                 break;
             }
         }
@@ -156,7 +156,7 @@ namespace Fleck2.Handlers
         
         public static byte[] BuildHandshake(WebSocketHttpRequest request)
         {
-            FleckLog.Debug("Building Hybi-14 Response");
+            FleckLog.Debug("Building Hybi-14 Response",null);
             
             var builder = new StringBuilder();
 

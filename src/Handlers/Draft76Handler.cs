@@ -61,7 +61,7 @@ namespace Fleck2.Handlers
 
         public static byte[] Handshake(WebSocketHttpRequest request)
         {
-            FleckLog.Debug("Building Draft76 Response");
+            FleckLog.Debug("Building Draft76 Response",null);
             
             var builder = new StringBuilder();
             builder.Append("HTTP/1.1 101 WebSocket Protocol Handshake\r\n");

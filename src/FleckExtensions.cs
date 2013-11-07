@@ -13,13 +13,13 @@ namespace Fleck2
 
         #region Action, Func
         public delegate void Action();
-        public delegate void Action<in T>(T t);
-        public delegate void Action<in T, in TU>(T t, TU u);
-        public delegate void Action<in T, in TU, in TV>(T t, TU u, TV v);
-        public delegate TResult Func<out TResult>();
-        public delegate TResult Func<in T, out TResult>(T t);
-        public delegate TResult Func<in T, in TU, out TResult>(T t, TU u);
-        public delegate TResult Func<in T, in TU, in TV, out TResult>(T t, TU u, TV v);
+        public delegate void Action<T>(T t);
+        public delegate void Action<T, TU>(T t, TU u);
+        public delegate void Action<T, TU, TV>(T t, TU u, TV v);
+        public delegate TResult Func<TResult>();
+        public delegate TResult Func<T, TResult>(T t);
+        public delegate TResult Func<T, TU, TResult>(T t, TU u);
+        public delegate TResult Func<T, TU, TV, TResult>(T t, TU u, TV v);
         #endregion
 
         #region Miscellaneous

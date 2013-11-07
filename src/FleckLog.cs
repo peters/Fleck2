@@ -22,22 +22,22 @@ namespace Fleck2
                 Console.WriteLine("{0} [{1}] {2} {3}", DateTime.Now, level, message, ex);
         };
 
-        public static void Warn(string message, Exception ex = null)
+        public static void Warn(string message, Exception ex)
         {
             LogAction(LogLevel.Warn, message, ex);
         }
 
-        public static void Error(string message, Exception ex = null)
+        public static void Error(string message, Exception ex)
         {
             LogAction(LogLevel.Error, message, ex);
         }
 
-        public static void Debug(string message, Exception ex = null)
+        public static void Debug(string message, Exception ex)
         {
             LogAction(LogLevel.Debug, message, ex);
         }
 
-        public static void Info(string message, Exception ex = null)
+        public static void Info(string message, Exception ex)
         {
             LogAction(LogLevel.Info, message, ex);
         }
