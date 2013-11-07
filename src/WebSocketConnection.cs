@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using Fleck2.Interfaces;
 
+using Ex = Fleck2.Fleck2Extensions;
+
 namespace Fleck2
 {
     public class WebSocketConnection : IWebSocketConnection
@@ -97,7 +99,7 @@ namespace Fleck2
 
         public void CreateHandler(IEnumerable<byte> data)
         {
-            var request = _parseRequest(data.ToArray());
+            var request = _parseRequest(Ex.ToArray(data));
             if (request == null)
                 return;
             Handler = _handlerFactory(request);
@@ -125,7 +127,7 @@ namespace Fleck2
                     return;
                 }
                 FleckLog.Debug(r + " bytes read");
-                byte[] readBytes = buffer.Take(r).ToArray();
+                byte[] readBytes = Ex.ToArray(Ex.Take(buffer, r));
 
                 if (Handler != null)
                 {

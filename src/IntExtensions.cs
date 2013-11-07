@@ -10,7 +10,7 @@ namespace Fleck2
         /// <typeparam name="T"></typeparam>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static byte[] ToBigEndianBytes<T>(this int source)
+        public static byte[] ToBigEndianBytes<T>(int source)
         {
             byte[] bytes;
 
@@ -34,7 +34,7 @@ namespace Fleck2
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static int ToLittleEndianInt(this byte[] source)
+        public static int ToLittleEndianInt(byte[] source)
         {
             if (BitConverter.IsLittleEndian)
                 Array.Reverse(source);

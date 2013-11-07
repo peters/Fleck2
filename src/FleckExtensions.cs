@@ -1,17 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
-namespace System.Runtime.CompilerServices
-{
-    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Method,
-        Inherited = false, AllowMultiple = false)]
-    public class ExtensionAttribute : Attribute
-    {
-    }
-}
-
-
 namespace Fleck2
 {
 
@@ -40,7 +29,7 @@ namespace Fleck2
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable"></param>
         /// <returns></returns>
-        public static T[] ToArray<T>(this IEnumerable<T> enumerable)
+        public static T[] ToArray<T>(IEnumerable<T> enumerable)
         {
             return ToList(enumerable).ToArray();
         }
@@ -50,7 +39,7 @@ namespace Fleck2
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable"></param>
         /// <returns></returns>
-        public static List<T> ToList<T>(this IEnumerable<T> enumerable)
+        public static List<T> ToList<T>(IEnumerable<T> enumerable)
         {
             var tmp = new List<T>();
             foreach (var value in enumerable)
@@ -67,7 +56,7 @@ namespace Fleck2
         /// <param name="enumerable"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public static IEnumerable<T> Skip<T>(this IEnumerable<T> enumerable, int count)
+        public static IEnumerable<T> Skip<T>(IEnumerable<T> enumerable, int count)
         {
             foreach(var value in enumerable)
             {
@@ -85,7 +74,7 @@ namespace Fleck2
         /// <param name="array"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public static byte[] Skip(this byte[] array, int count)
+        public static byte[] Skip(byte[] array, int count)
         {
             var newArray = new byte[array.Length - count];
             var n = 0;
@@ -108,7 +97,7 @@ namespace Fleck2
         /// <param name="enumerable"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public static IEnumerable<T> Take<T>(this IEnumerable<T> enumerable, int count)
+        public static IEnumerable<T> Take<T>(IEnumerable<T> enumerable, int count)
         {
             foreach (var value in enumerable)
             {
@@ -130,7 +119,7 @@ namespace Fleck2
         /// <param name="enumerable"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public static IEnumerable<T> Skip<T>(this T[] enumerable, int count)
+        public static IEnumerable<T> Skip<T>(T[] enumerable, int count)
         {
             foreach (var value in enumerable)
             {
@@ -152,7 +141,7 @@ namespace Fleck2
         /// <param name="enumerable"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public static IEnumerable<T> Take<T>(this T[] enumerable, int count)
+        public static IEnumerable<T> Take<T>(T[] enumerable, int count)
         {
             foreach (var value in enumerable)
             {
@@ -174,7 +163,7 @@ namespace Fleck2
         /// <param name="enumerable"></param>
         /// <param name="selector"></param>
         /// <returns></returns>
-        public static IEnumerable<TResult> Select<TSource, TResult>(this IEnumerable<TSource> enumerable, 
+        public static IEnumerable<TResult> Select<TSource, TResult>(IEnumerable<TSource> enumerable, 
                                                                     Converter<TSource, TResult> selector)
         {
             foreach (var newValue in ToList(enumerable).ConvertAll(selector))
