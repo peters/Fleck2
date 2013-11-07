@@ -4,6 +4,8 @@ using System.Security.Cryptography;
 using System.Text;
 using Fleck2.Interfaces;
 
+using Ex = Fleck2.Fleck2Extensions;
+
 namespace Fleck2.Handlers
 {
     public static class Draft76Handler
@@ -36,7 +38,7 @@ namespace Fleck2.Handlers
                 if (endIndex > MaxSize)
                     throw new WebSocketException(WebSocketStatusCodes.MessageTooBig);
 
-                byte[] bytes = data.Skip(1).Take(endIndex - 1).ToArray();
+                byte[] bytes = Ex.ToArray(Ex.Take(Ex.Skip(data, 1), (endIndex - 1)));
 
                 data.RemoveRange(0, endIndex + 1);
                 
