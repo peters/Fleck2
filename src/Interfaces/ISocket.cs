@@ -17,7 +17,7 @@ namespace Fleck2.Interfaces
 
         void Accept(Fleck2Extensions.Action<ISocket> callback, Fleck2Extensions.Action<Exception> error);
         void Send(byte[] buffer, Fleck2Extensions.Action callback, Fleck2Extensions.Action<Exception> error);
-        void Receive(byte[] buffer, Fleck2Extensions.Action<int> callback, Fleck2Extensions.Action<Exception> error, int offset = 0);
+        void Receive(byte[] buffer, Fleck2Extensions.Action<int> callback, Fleck2Extensions.Action<Exception> error, int offset);
         void Authenticate(X509Certificate2 certificate, Fleck2Extensions.Action callback, Fleck2Extensions.Action<Exception> error);
 
         void Dispose();

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using Fleck2.Interfaces;
 
+using Ex = Fleck2.Fleck2Extensions;
+
 namespace Fleck2
 {
     public class WebSocketConnection : IWebSocketConnection
@@ -45,12 +47,12 @@ namespace Fleck2
 
             if (_closed || !Socket.Connected)
             {
-                FleckLog.Warn("Data sent after close. Ignoring.");
+                FleckLog.Warn("Data sent after close. Ignoring.",null);
                 return;
             }
 
             var bytes = Handler.FrameText(message);
-            SendBytes(bytes);
+            SendBytes(bytes,null);
         }
         
         public void Send(byte[] message)
@@ -60,12 +62,12 @@ namespace Fleck2
 
             if (_closed || !Socket.Connected)
             {
-                FleckLog.Warn("Data sent after close. Ignoring.");
+                FleckLog.Warn("Data sent after close. Ignoring.",null);
                 return;
             }
 
             var bytes = Handler.FrameBinary(message);
-            SendBytes(bytes);
+            SendBytes(bytes,null);
         }
 
         public void StartReceiving()
@@ -97,7 +99,7 @@ namespace Fleck2
 
         public void CreateHandler(IEnumerable<byte> data)
         {
-            var request = _parseRequest(data.ToArray());
+            var request = _parseRequest(Ex.ToArray(data));
             if (request == null)
                 return;
             Handler = _handlerFactory(request);
@@ -120,12 +122,12 @@ namespace Fleck2
             {
                 if (r <= 0)
                 {
-                    FleckLog.Debug("0 bytes read. Closing.");
+                    FleckLog.Debug("0 bytes read. Closing.",null);
                     CloseSocket();
                     return;
                 }
-                FleckLog.Debug(r + " bytes read");
-                byte[] readBytes = buffer.Take(r).ToArray();
+                FleckLog.Debug(r + " bytes read",null);
+                byte[] readBytes = Ex.ToArray(Ex.Take(buffer, r));
 
                 if (Handler != null)
                 {
@@ -139,7 +141,7 @@ namespace Fleck2
                 
                 Read(data, buffer);
             },
-            HandleReadError);
+            HandleReadError, 0);
         }
         
         private void HandleReadError(Exception e)
@@ -174,11 +176,11 @@ namespace Fleck2
             }
         }
 
-        private void SendBytes(byte[] bytes, Fleck2Extensions.Action callback = null)
+        private void SendBytes(byte[] bytes, Fleck2Extensions.Action callback)
         {
             Socket.Send(bytes, () =>
             {
-                FleckLog.Debug("Sent " + bytes.Length + " bytes");
+                FleckLog.Debug("Sent " + bytes.Length + " bytes",null);
                 if (callback != null)
                     callback();
             },

@@ -5,6 +5,9 @@ using System.Security.Cryptography;
 using System.Text;
 using Fleck2.Interfaces;
 
+using Ex = Fleck2.Fleck2Extensions;
+using IEx = Fleck2.IntExtensions;
+
 namespace Fleck2.Handlers
 {
     public static class Hybi13Handler
@@ -17,7 +20,7 @@ namespace Fleck2.Handlers
                 Handshake = () => BuildHandshake(request),
                 TextFrame = data => FrameData(Encoding.UTF8.GetBytes(data), FrameType.Text),
                 BinaryFrame = data => FrameData(data, FrameType.Binary),
-                CloseFrame = i => FrameData(i.ToBigEndianBytes<ushort>(), FrameType.Close),
+                CloseFrame = i => FrameData(IEx.ToBigEndianBytes<ushort>(i), FrameType.Close),
                 ReceiveData = bytes => ReceiveData(bytes, readState, (op, data) => ProcessFrame(op, data, onMessage, onClose, onBinary))
             };
         }
@@ -31,11 +34,11 @@ namespace Fleck2.Handlers
             
             if (payload.Length > UInt16.MaxValue) {
                 memoryStream.WriteByte(127);
-                var lengthBytes = payload.Length.ToBigEndianBytes<ushort>();
+                var lengthBytes = IEx.ToBigEndianBytes<ulong>(payload.Length);
                 memoryStream.Write(lengthBytes, 0, lengthBytes.Length);
             } else if (payload.Length > 125) {
                 memoryStream.WriteByte(126);
-                var lengthBytes = payload.Length.ToBigEndianBytes<ushort>();
+                var lengthBytes = IEx.ToBigEndianBytes<ushort>(payload.Length);
                 memoryStream.Write(lengthBytes, 0, lengthBytes.Length);
             } else {
                 memoryStream.WriteByte((byte)payload.Length);
@@ -71,13 +74,13 @@ namespace Fleck2.Handlers
                     case 127:
                         if (data.Count < index + 8)
                             return; //Not complete
-                        payloadLength = data.Skip(index).Take(8).ToArray().ToLittleEndianInt();
+                        payloadLength = IEx.ToLittleEndianInt(Ex.ToArray(Ex.Take(Ex.Skip(data, index), (8))));
                         index += 8;
                         break;
                     case 126:
                         if (data.Count < index + 2)
                             return; //Not complete
-                        payloadLength = data.Skip(index).Take(2).ToArray().ToLittleEndianInt();
+                        payloadLength = IEx.ToLittleEndianInt(Ex.ToArray(Ex.Take(Ex.Skip(data, index), 2)));
                         index += 2;
                         break;
                     default:
@@ -88,7 +91,7 @@ namespace Fleck2.Handlers
                 if (data.Count < index + 4) 
                     return; //Not complete
 
-                var maskBytes = data.Skip(index).Take(4).ToList(); 
+                var maskBytes = Ex.ToList(Ex.Take(Ex.Skip(data, index), 4)); 
  
                 index += 4;
 
@@ -96,9 +99,8 @@ namespace Fleck2.Handlers
                     return; //Not complete
 
                 var i = 0;
-                var payload = data.Skip(index)
-                              .Take(payloadLength)
-                              .Select(value => (byte)(value ^ maskBytes[i++ % 4]));
+                var payload = Ex.Select(Ex.Take(Ex.Skip(data, index), payloadLength),
+                              value => (byte)(value ^ maskBytes[i++ % 4]));
                
                 readState.Data.AddRange(payload);
                 data.RemoveRange(0, index + payloadLength);
@@ -129,13 +131,13 @@ namespace Fleck2.Handlers
                     
                 if (data.Length >= 2)
                 {
-                    var closeCode = (ushort) (data.Take(2).ToArray().ToLittleEndianInt());
+                    var closeCode = (ushort) (IEx.ToLittleEndianInt(Ex.ToArray(Ex.Take(data, 2))));
                     if (!WebSocketStatusCodes.Contains(closeCode) && (closeCode < 3000 || closeCode > 4999))
                         throw new WebSocketException(WebSocketStatusCodes.ProtocolError);
                 }
                 
                 if (data.Length > 2)
-                    ReadUtf8PayloadData(data.Skip(2));
+                    ReadUtf8PayloadData(Ex.Skip(data, 2));
                 
                 onClose();
                 break;
@@ -146,7 +148,7 @@ namespace Fleck2.Handlers
                 onMessage(ReadUtf8PayloadData(data));
                 break;
             default:
-                FleckLog.Debug("Received unhandled " + frameType);
+                FleckLog.Debug("Received unhandled " + frameType,null);
                 break;
             }
         }
@@ -154,7 +156,7 @@ namespace Fleck2.Handlers
         
         public static byte[] BuildHandshake(WebSocketHttpRequest request)
         {
-            FleckLog.Debug("Building Hybi-14 Response");
+            FleckLog.Debug("Building Hybi-14 Response",null);
             
             var builder = new StringBuilder();
 
