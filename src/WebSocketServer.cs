@@ -1,9 +1,9 @@
+using Fleck2.Interfaces;
 using System;
 using System.Globalization;
 using System.Net;
 using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
-using Fleck2.Interfaces;
 
 namespace Fleck2
 {
@@ -45,7 +45,12 @@ namespace Fleck2
 
         public void Start(Action<IWebSocketConnection> config)
         {
-            var ipLocal = new IPEndPoint(IPAddress.Any, Port);
+            Start(config, IPAddress.Any);
+        }
+
+        public void Start(Action<IWebSocketConnection> config, IPAddress ipAddress)
+        {
+            var ipLocal = new IPEndPoint(ipAddress, Port);
             ListenerSocket.Bind(ipLocal);
             ListenerSocket.Listen(100);
             FleckLog.Info("Server started at " + Location);
