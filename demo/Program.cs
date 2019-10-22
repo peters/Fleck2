@@ -19,10 +19,17 @@ namespace Fleck2.Demo
                     Console.WriteLine("Open!");
                     allSockets.Add(socket);
                 };
+				
+				//This is triggering twise and calling double closing, when tab is closed in browser. How to fix this?
                 socket.OnClose = () =>
                 {
-                    Console.WriteLine("Close!");
-                    allSockets.Remove(socket);
+                    Console.Write("Try to close... ");
+                    try{
+						allSockets.Remove(socket);
+						Console.Write(" Successfuly Closed!\n");
+					}catch{
+						Console.WriteLine(" Was been already closed!\n");
+					}
                 };
                 socket.OnMessage = message =>
                 {
