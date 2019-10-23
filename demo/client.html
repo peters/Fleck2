@@ -12,7 +12,11 @@
             inc.innerHTML += "connecting to server ..<br/>";
 
             // create a new websocket and connect
-            window.ws = new wsImpl('ws://localhost:8181/consoleappsample', 'my-protocol');
+//comment this string, because this working only in Mozilla for me.
+        //    window.ws = new wsImpl('ws://localhost:8181/consoleappsample', 'my-protocol');
+
+// This working for Google Chrome, Chromium, and 360 Extreme Explorer
+            window.ws = new wsImpl('ws://localhost:8181/consoleappsample');
 
             // when data is comming from the server, this metod is called
             ws.onmessage = function (evt) {
