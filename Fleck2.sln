@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fleck2", "src\Fleck2.csproj", "{213AD961-51EF-40DD-96BF-9EF6690A327C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fleck2.Tests", "tests\Fleck2.Tests.csproj", "{01AECC7B-C5FC-451C-8D3B-C400F0C9883C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fleck2.Demo", "demo\Fleck2.Demo.csproj", "{BF068C8B-109D-44B3-B9B7-76BC3A13B2C5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{213AD961-51EF-40DD-96BF-9EF6690A327C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{213AD961-51EF-40DD-96BF-9EF6690A327C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{213AD961-51EF-40DD-96BF-9EF6690A327C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{213AD961-51EF-40DD-96BF-9EF6690A327C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01AECC7B-C5FC-451C-8D3B-C400F0C9883C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01AECC7B-C5FC-451C-8D3B-C400F0C9883C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01AECC7B-C5FC-451C-8D3B-C400F0C9883C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01AECC7B-C5FC-451C-8D3B-C400F0C9883C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF068C8B-109D-44B3-B9B7-76BC3A13B2C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF068C8B-109D-44B3-B9B7-76BC3A13B2C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF068C8B-109D-44B3-B9B7-76BC3A13B2C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF068C8B-109D-44B3-B9B7-76BC3A13B2C5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

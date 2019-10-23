@@ -1,0 +1,61 @@
+using System;
+using Fleck2;
+using NUnit.Framework;
+using System.Net.Sockets;
+using System.Net;
+using System.Threading;
+
+
+namespace Fleck.Tests
+{
+    [TestFixture]
+    public class SocketWrapperTests
+    {
+        private Socket _socket;
+        private Socket _listener;
+        private Socket _client;
+        private EndPoint _endpoint;
+        private SocketWrapper _wrapper;
+
+        [SetUp]
+        public void Setup()
+        {
+            _listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
+            _endpoint = new IPEndPoint(IPAddress.Loopback, 45982);
+            _listener.Bind(_endpoint);
+            _listener.Listen(10);
+
+            _client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
+            ThreadPool.QueueUserWorkItem(x => {
+                Thread.Sleep(100);
+                _client.Connect(_endpoint);
+            });
+            _socket = _listener.Accept();
+
+            _wrapper = new SocketWrapper(_socket);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _socket.Dispose();
+            _client.Dispose();
+            _listener.Dispose();
+            _wrapper.Dispose();
+        }
+
+        [Test]
+        public void ShouldHandleObjectDisposedOnSend()
+        {
+            _wrapper.Dispose();
+            _wrapper.Send(new byte[1], () => {}, Assert.IsInstanceOf<ObjectDisposedException>);
+        }
+        [Test]
+        public void ShouldHandleObjectDisposedOnReceive()
+        {
+            _wrapper.Dispose();
+            _wrapper.Receive(new byte[1], i => { }, Assert.IsInstanceOf<ObjectDisposedException>, 0);
+        }
+    }
+}
+

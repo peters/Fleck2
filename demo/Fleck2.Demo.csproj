@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BF068C8B-109D-44B3-B9B7-76BC3A13B2C5}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fleck2.Demo</RootNamespace>
+    <AssemblyName>Fleck2.Demo</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Flesh\FleckExtensions.cs" />
+    <Compile Include="Flesh\FleckLog.cs" />
+    <Compile Include="Flesh\FrameType.cs" />
+    <Compile Include="Flesh\HandlerFactory.cs" />
+    <Compile Include="Flesh\Handlers\ComposableHandler.cs" />
+    <Compile Include="Flesh\Handlers\Draft76Handler.cs" />
+    <Compile Include="Flesh\Handlers\Hybi13Handler.cs" />
+    <Compile Include="Flesh\HandshakeException.cs" />
+    <Compile Include="Flesh\Interfaces\ICancellationToken.cs" />
+    <Compile Include="Flesh\Interfaces\IHandler.cs" />
+    <Compile Include="Flesh\Interfaces\ISocket.cs" />
+    <Compile Include="Flesh\Interfaces\IWebSocketConnection.cs" />
+    <Compile Include="Flesh\Interfaces\IWebSocketConnectionInfo.cs" />
+    <Compile Include="Flesh\Interfaces\IWebSocketServer.cs" />
+    <Compile Include="Flesh\IntExtensions.cs" />
+    <Compile Include="Flesh\ReadState.cs" />
+    <Compile Include="Flesh\RequestParser.cs" />
+    <Compile Include="Flesh\SocketCancellationToken.cs" />
+    <Compile Include="Flesh\SocketCancellationTokenException.cs" />
+    <Compile Include="Flesh\SocketFactory.cs" />
+    <Compile Include="Flesh\SocketResult.cs" />
+    <Compile Include="Flesh\SocketWrapper.cs" />
+    <Compile Include="Flesh\WebSocketConnection.cs" />
+    <Compile Include="Flesh\WebSocketConnectionInfo.cs" />
+    <Compile Include="Flesh\WebSocketException.cs" />
+    <Compile Include="Flesh\WebSocketHttpRequest.cs" />
+    <Compile Include="Flesh\WebSocketServer.cs" />
+    <Compile Include="Flesh\WebSocketStatusCodes.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="client.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
