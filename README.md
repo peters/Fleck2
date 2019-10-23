@@ -12,8 +12,18 @@ Install via NuGet
 
 Building
 --------
-Run build.bat from the commandline and release dll will be
+```
+1. "Clone or Download" -> "Download zip" -> Unzip it.
+2. Run build.bat from the commandline and release dll will be
 created for NET 2.0, 3.5, 4.0 and 4.5.
+```
+```
+To do building just demo and test this:
+1. Go to "demo/" and start "Compile.bat", or start "/build.bat".
+2. Wait compilation. Compiled files will be saved in "/demo/bin/Release", and Fleck2.dll there is exists too.
+3. Run "Fleck2.Demo.exe" from the folder "\demo\bin\Release\".
+4. Type any messages in opened "client.html", and see this in the server console.
+```
 
 Requirements
 ------------

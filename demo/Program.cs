@@ -10,20 +10,47 @@ namespace Fleck2.Demo
     {
         static void Main(string[] args)
         {
-            int port_api = 80;
-            if (args.Length > 0) port_api = int.Parse(args[0]);
-
-            string strHostName = Dns.GetHostName();
-            IPHostEntry ipEntry = Dns.GetHostEntry(strHostName);
             string ip = "127.0.0.1";
-            foreach (var x in ipEntry.AddressList)
-            {
-                if (x.ToString().StartsWith("192.168.") || x.ToString().StartsWith("10.200."))
-                    ip = x.ToString();
-            }
+            int port_api = 80;
+			string pathway = "";
 
-            string uri = string.Format("ws://{0}:{1}/ios-offline", ip, port_api);
-            if (port_api == 80) uri = string.Format("ws://{0}/ios-offline", ip);
+			Console.WriteLine(
+				"Usage:\n"+
+				"\t>Fleck2.Demo.exe - try to found IP and bind there. Default port 80. \n"+
+				"\t>Fleck2.Demo.exe \"PORT\" - try to found IP and listen specified port\n"+
+				"\t>Fleck2.Demo.exe \"IP.IP.IP.IP\" \"PORT\" - bind to specified IP and listen specified port.\n"				
+			);
+			
+            if(args.Length == 0){
+				Console.WriteLine("Try to find external IP, and bind there...");
+				string strHostName = Dns.GetHostName();
+				Console.WriteLine("hostname: "+strHostName);
+				IPHostEntry ipEntry = Dns.GetHostEntry(strHostName);
+				foreach (var x in ipEntry.AddressList)
+				{
+					Console.WriteLine("Found Entry IP: "+x.ToString());
+					if (x.ToString().StartsWith("192.168.") || x.ToString().StartsWith("10.200.")){
+						Console.WriteLine("Used local IP: "+x.ToString());
+						ip = x.ToString();
+					}
+				}
+			}else if (args.Length == 1){
+				port_api = int.Parse(args[0]);
+			}
+			else if(args.Length > 1){
+				ip = args[0];
+				port_api = int.Parse(args[1]);
+				if(args.Length > 2 && args.Length == 3){
+					pathway = args[2];
+				}else{
+					pathway = args[2];
+					Console.WriteLine("Warning: Too many arguments specified!");
+				}
+			}
+			
+			Console.WriteLine("IP: "+ip+" port: "+port_api);
+            string uri = string.Format("ws://{0}:{1}/"+pathway, ip, port_api);
+            if (port_api == 80) uri = string.Format("ws://{0}/"+pathway, ip);
 
             Console.Title = uri;
 
@@ -49,7 +76,7 @@ namespace Fleck2.Demo
                 };
             });
 
-            //Process.Start("client.html");
+            Process.Start("client.html");
 
             var input = Console.ReadLine();
             while (input != "exit")
